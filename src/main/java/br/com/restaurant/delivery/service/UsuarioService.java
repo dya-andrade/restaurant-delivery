@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.restaurant.delivery.controller.UsuarioController;
 import br.com.restaurant.delivery.data.vo.v1.UsuarioVO;
-import br.com.restaurant.delivery.exception.PersistenciaEntidadeException;
+import br.com.restaurant.delivery.exception.ConflitoEntidadeException;
 import br.com.restaurant.delivery.exception.RecursoNaoEncontradoException;
 import br.com.restaurant.delivery.mapper.DozerMapper;
 import br.com.restaurant.delivery.model.Usuario;
@@ -30,7 +30,7 @@ public class UsuarioService {
 		Optional<Usuario> usuarioDuplicado = repository.findByEmail(vo.getEmail());
 
 		if (usuarioDuplicado.isPresent())
-			throw new PersistenciaEntidadeException("Já existe um usuário com este e-mail!");
+			throw new ConflitoEntidadeException("Já existe um usuário com este e-mail!");
 
 		Usuario usuario = DozerMapper.parseObject(vo, Usuario.class);
 
@@ -57,8 +57,8 @@ public class UsuarioService {
 
 		List<UsuarioVO> vos = DozerMapper.parseListObjects(repository.findAll(), UsuarioVO.class);
 
-		vos.forEach(u -> u
-				.add(linkTo(methodOn(UsuarioController.class).buscaUsuarioPeloEmail(u.getEmail())).withSelfRel()));
+		vos.forEach(vo -> vo
+				.add(linkTo(methodOn(UsuarioController.class).buscaUsuarioPeloEmail(vo.getEmail())).withSelfRel()));
 
 		return vos;
 	}
