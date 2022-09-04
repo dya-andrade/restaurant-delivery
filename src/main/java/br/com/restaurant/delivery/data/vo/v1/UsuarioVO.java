@@ -13,16 +13,29 @@ public class UsuarioVO extends RepresentationModel<UsuarioVO> implements Seriali
 
 	private static final long serialVersionUID = 1L;
 
+	private Long id;
+
 	@NotBlank
 	private String email;
 
 	@NotBlank
 	private String senha;
 
+	@NotNull
+	private PerfilAcessoVO perfilAcesso;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
 	public String getEmail() {
 		return email;
 	}
-	
+
 	public void setEmail(String email) {
 		this.email = email;
 	}
@@ -35,11 +48,19 @@ public class UsuarioVO extends RepresentationModel<UsuarioVO> implements Seriali
 		this.senha = senha;
 	}
 
+	public PerfilAcessoVO getPerfilAcesso() {
+		return perfilAcesso;
+	}
+
+	public void setPerfilAcesso(PerfilAcessoVO perfilAcesso) {
+		this.perfilAcesso = perfilAcesso;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = super.hashCode();
-		result = prime * result + Objects.hash(email, senha);
+		result = prime * result + Objects.hash(email, id, perfilAcesso, senha);
 		return result;
 	}
 
@@ -52,6 +73,7 @@ public class UsuarioVO extends RepresentationModel<UsuarioVO> implements Seriali
 		if (getClass() != obj.getClass())
 			return false;
 		UsuarioVO other = (UsuarioVO) obj;
-		return Objects.equals(email, other.email) && Objects.equals(senha, other.senha);
+		return Objects.equals(email, other.email) && Objects.equals(id, other.id)
+				&& Objects.equals(perfilAcesso, other.perfilAcesso) && Objects.equals(senha, other.senha);
 	}
 }
