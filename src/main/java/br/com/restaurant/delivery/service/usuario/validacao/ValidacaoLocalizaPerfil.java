@@ -3,10 +3,10 @@ package br.com.restaurant.delivery.service.usuario.validacao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import br.com.restaurant.delivery.data.vo.v1.UsuarioVO;
+import br.com.restaurant.delivery.data.vo.v1.usuario.UsuarioVO;
 import br.com.restaurant.delivery.exception.RecursoNaoEncontradoException;
 import br.com.restaurant.delivery.model.usuario.PerfilAcesso;
-import br.com.restaurant.delivery.repository.PerfilAcessoRepository;
+import br.com.restaurant.delivery.repository.usuario.PerfilAcessoRepository;
 
 @Component
 public class ValidacaoLocalizaPerfil {

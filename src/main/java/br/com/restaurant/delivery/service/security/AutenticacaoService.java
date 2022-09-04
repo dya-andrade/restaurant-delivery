@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 import br.com.restaurant.delivery.data.vo.v1.security.LoginVO;
 import br.com.restaurant.delivery.data.vo.v1.security.TokenVO;
 import br.com.restaurant.delivery.model.usuario.Usuario;
-import br.com.restaurant.delivery.repository.UsuarioRepository;
+import br.com.restaurant.delivery.repository.usuario.UsuarioRepository;
 import br.com.restaurant.delivery.security.jwt.JwtTokenProvider;
 
 @Service

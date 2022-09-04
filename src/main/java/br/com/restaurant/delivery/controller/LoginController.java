@@ -15,7 +15,7 @@ import br.com.restaurant.delivery.service.security.AutenticacaoService;
 
 @RestController
 @RequestMapping("/restaurante-delivery/login")
-public class AutenticacaoController {
+public class LoginController {
 
 	@Autowired
 	private AutenticacaoService service;

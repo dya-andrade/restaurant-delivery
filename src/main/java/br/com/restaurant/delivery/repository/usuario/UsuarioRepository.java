@@ -1,4 +1,4 @@
-package br.com.restaurant.delivery.repository;
+package br.com.restaurant.delivery.repository.usuario;
 
 import java.util.Optional;
 

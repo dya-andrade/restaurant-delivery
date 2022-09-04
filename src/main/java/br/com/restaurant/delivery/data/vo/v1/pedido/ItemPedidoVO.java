@@ -1,32 +1,28 @@
-package br.com.restaurant.delivery.model;
+package br.com.restaurant.delivery.data.vo.v1.pedido;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Objects;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
-@Entity
-@Table(name = "item_pedido")
-public class ItemPedido implements Serializable {
+import br.com.restaurant.delivery.model.pedido.ComidaBebida;
+
+@NotNull
+public class ItemPedidoVO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	@NotNull
 	private ComidaBebida comidaBebida;
 	
+	@NotNull
 	private Integer quantidade;
 	
 	private BigDecimal valorTotal;
 	
-	public ItemPedido(){}
 
 	public Long getId() {
 		return id;
@@ -73,7 +69,7 @@ public class ItemPedido implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		ItemPedido other = (ItemPedido) obj;
+		ItemPedidoVO other = (ItemPedidoVO) obj;
 		return comidaBebida == other.comidaBebida && Objects.equals(id, other.id)
 				&& Objects.equals(quantidade, other.quantidade) && Objects.equals(valorTotal, other.valorTotal);
 	}

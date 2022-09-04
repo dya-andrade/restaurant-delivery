@@ -8,13 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import br.com.restaurant.delivery.data.vo.v1.UsuarioVO;
+import br.com.restaurant.delivery.data.vo.v1.usuario.UsuarioVO;
 import br.com.restaurant.delivery.mapper.DozerMapper;
-import br.com.restaurant.delivery.model.usuario.PerfilAcesso;
 import br.com.restaurant.delivery.model.usuario.Usuario;
-import br.com.restaurant.delivery.repository.UsuarioRepository;
-import br.com.restaurant.delivery.service.usuario.acao.AdicionaLinkHateoas;
-import br.com.restaurant.delivery.service.usuario.validacao.ValidacaoLocalizaPerfil;
+import br.com.restaurant.delivery.repository.usuario.UsuarioRepository;
+import br.com.restaurant.delivery.service.usuario.acao.AdicionaLinkUsuario;
+import br.com.restaurant.delivery.service.usuario.acao.AdicionaPerfilNoUsuario;
 import br.com.restaurant.delivery.service.usuario.validacao.ValidacaoLocalizaUsuario;
 import br.com.restaurant.delivery.service.usuario.validacao.ValidacaoUsuarioDuplicado;
 
@@ -26,65 +25,61 @@ public class UsuarioService {
 	private UsuarioRepository usuarioRepository;
 	
 	@Autowired
-	private ValidacaoLocalizaUsuario validacaoLocalizaUsuario;
+	private ValidacaoLocalizaUsuario localizaUsuario;
 	
 	@Autowired
-	private ValidacaoLocalizaPerfil validacaoLocalizaPerfil;
+	private ValidacaoUsuarioDuplicado usuarioDuplicado;
 	
 	@Autowired
-	private ValidacaoUsuarioDuplicado validacaoUsuarioDuplicado;
+	private AdicionaLinkUsuario adicionaLink;
 	
 	@Autowired
-	private AdicionaLinkHateoas adicionaLinkHateoas;
+	private AdicionaPerfilNoUsuario adicionaPerfilNoUsuario;
 	
 
 	public UsuarioVO criaUsuario(@Valid UsuarioVO vo) {
 
-		validacaoUsuarioDuplicado.valida(vo);
-
-		PerfilAcesso perfilAcesso = validacaoLocalizaPerfil.valida(vo);
+		usuarioDuplicado.valida(vo);
 		
 		Usuario usuario = DozerMapper.parseObject(vo, Usuario.class);
 		
-		usuario.setPerfilAcesso(perfilAcesso);
-		
+		adicionaPerfilNoUsuario.adiciona(usuario, vo);
+
 		vo = DozerMapper.parseObject(usuarioRepository.save(usuario), UsuarioVO.class);
 
-		return adicionaLinkHateoas.adicionaLink(vo);
+		return adicionaLink.adicionaLink(vo);
 	}
 
 	public UsuarioVO buscaUsuarioPeloId(Long id) {
 
-		Usuario usuario = validacaoLocalizaUsuario.valida(id);
+		Usuario usuario = localizaUsuario.valida(id);
 
 		UsuarioVO vo = DozerMapper.parseObject(usuario, UsuarioVO.class);
 
-		return adicionaLinkHateoas.adicionaLink(vo);
+		return adicionaLink.adicionaLink(vo);
 	}
 
 	public List<UsuarioVO> listaTodosUsuarios() {
 
 		List<UsuarioVO> vos = DozerMapper.parseListObjects(usuarioRepository.findAll(), UsuarioVO.class);
 
-		return adicionaLinkHateoas.adicionaLinkLista(vos);
+		return adicionaLink.adicionaLinkLista(vos);
 	}
 
 	public UsuarioVO atualizaUsuario(@Valid UsuarioVO vo, Long id) {
 
-		Usuario usuario = validacaoLocalizaUsuario.valida(id);
+		Usuario usuario = localizaUsuario.valida(id);
 		
-		PerfilAcesso perfilAcesso = validacaoLocalizaPerfil.valida(vo);
-		
-		usuario.setPerfilAcesso(perfilAcesso);
+		adicionaPerfilNoUsuario.adiciona(usuario, vo);
 		
 		usuarioRepository.save(usuario);
 		
-		return adicionaLinkHateoas.adicionaLink(vo);
+		return adicionaLink.adicionaLink(vo);
 	}
 
 	public void deletaUsuario(Long id) {
 		
-		Usuario usuario = validacaoLocalizaUsuario.valida(id);
+		Usuario usuario = localizaUsuario.valida(id);
 
 		usuarioRepository.delete(usuario);
 	}

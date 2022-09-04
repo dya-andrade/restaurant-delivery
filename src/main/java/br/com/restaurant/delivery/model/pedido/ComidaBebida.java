@@ -1,4 +1,4 @@
-package br.com.restaurant.delivery.model;
+package br.com.restaurant.delivery.model.pedido;
 
 import java.math.BigDecimal;
 

@@ -1,4 +1,4 @@
-package br.com.restaurant.delivery.model;
+package br.com.restaurant.delivery.data.vo.v1.pedido;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -6,33 +6,21 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import org.springframework.hateoas.RepresentationModel;
 
-@Entity
-@Table(name = "pedido")
-public class Pedido implements Serializable {
+import br.com.restaurant.delivery.data.vo.v1.entrega.EntregaVO;
+import br.com.restaurant.delivery.model.cliente.Cliente;
+import br.com.restaurant.delivery.model.entrega.Entrega;
+
+public class PedidoCompletoVO extends RepresentationModel<PedidoCompletoVO> implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "id_cliente", nullable = false)
 	private Cliente cliente;
-	
-	@OneToMany(fetch = FetchType.EAGER)
-	@JoinColumn(name = "id_pedido")
-	private List<ItemPedido> itensPedido;
+
+	private List<ItemPedidoVO> itensPedido;
 
 	private LocalDateTime data;
 
@@ -40,11 +28,7 @@ public class Pedido implements Serializable {
 
 	private BigDecimal desconto;
 
-	@ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "id_entrega")
-	private Entrega entrega;
-	
-	public Pedido(){}
+	private EntregaVO entrega;
 
 	public Long getId() {
 		return id;
@@ -62,11 +46,11 @@ public class Pedido implements Serializable {
 		this.cliente = cliente;
 	}
 
-	public List<ItemPedido> getItensPedido() {
+	public List<ItemPedidoVO> getItensPedido() {
 		return itensPedido;
 	}
 
-	public void setItensPedido(List<ItemPedido> itensPedido) {
+	public void setItensPedido(List<ItemPedidoVO> itensPedido) {
 		this.itensPedido = itensPedido;
 	}
 
@@ -94,11 +78,11 @@ public class Pedido implements Serializable {
 		this.desconto = desconto;
 	}
 
-	public Entrega getEntrega() {
+	public EntregaVO getEntrega() {
 		return entrega;
 	}
 
-	public void setEntrega(Entrega entrega) {
+	public void setEntrega(EntregaVO entrega) {
 		this.entrega = entrega;
 	}
 
@@ -115,7 +99,7 @@ public class Pedido implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Pedido other = (Pedido) obj;
+		PedidoCompletoVO other = (PedidoCompletoVO) obj;
 		return Objects.equals(cliente, other.cliente) && Objects.equals(data, other.data)
 				&& Objects.equals(desconto, other.desconto) && Objects.equals(entrega, other.entrega)
 				&& Objects.equals(id, other.id) && Objects.equals(itensPedido, other.itensPedido)

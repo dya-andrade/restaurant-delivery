@@ -1,4 +1,4 @@
-package br.com.restaurant.delivery.model;
+package br.com.restaurant.delivery.model.cliente;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 

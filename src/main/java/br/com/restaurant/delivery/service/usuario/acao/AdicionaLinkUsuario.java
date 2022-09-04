@@ -8,10 +8,10 @@ import java.util.List;
 import org.springframework.stereotype.Component;
 
 import br.com.restaurant.delivery.controller.UsuarioController;
-import br.com.restaurant.delivery.data.vo.v1.UsuarioVO;
+import br.com.restaurant.delivery.data.vo.v1.usuario.UsuarioVO;
 
 @Component
-public class AdicionaLinkHateoas {
+public class AdicionaLinkUsuario {
 	
 	public UsuarioVO adicionaLink(UsuarioVO vo) {
 		vo.add(linkTo(methodOn(UsuarioController.class).buscaUsuarioPeloId(vo.getId())).withSelfRel());

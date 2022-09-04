@@ -1,10 +1,11 @@
-package br.com.restaurant.delivery.model;
+package br.com.restaurant.delivery.model.cliente;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -15,6 +16,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import br.com.restaurant.delivery.model.pedido.Pedido;
 
 @Entity
 @Table(name = "cliente")
@@ -31,18 +34,17 @@ public class Cliente implements Serializable {
 	@Column(unique = true)
 	private String telefone;
 
-	@ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "id_endereco")
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+	@JoinColumn(name = "id_endereco")
 	private Endereco endereco;
 
 	private FormaPagamento formaPagamento;
 
-	private LocalDateTime dataUltimoPedido;
-
 	@OneToMany(mappedBy = "cliente")
 	private List<Pedido> pedidos;
 
-	public Cliente() {}
+	public Cliente() {
+	}
 
 	public Long getId() {
 		return id;
@@ -84,14 +86,6 @@ public class Cliente implements Serializable {
 		this.formaPagamento = formaPagamento;
 	}
 
-	public LocalDateTime getDataUltimoPedido() {
-		return dataUltimoPedido;
-	}
-
-	public void setDataUltimoPedido(LocalDateTime dataUltimoPedido) {
-		this.dataUltimoPedido = dataUltimoPedido;
-	}
-
 	public List<Pedido> getPedidos() {
 		return pedidos;
 	}
@@ -102,7 +96,7 @@ public class Cliente implements Serializable {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(dataUltimoPedido, endereco, formaPagamento, id, nome, pedidos, telefone);
+		return Objects.hash(endereco, formaPagamento, id, nome, pedidos, telefone);
 	}
 
 	@Override
@@ -114,9 +108,8 @@ public class Cliente implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Cliente other = (Cliente) obj;
-		return Objects.equals(dataUltimoPedido, other.dataUltimoPedido) && Objects.equals(endereco, other.endereco)
-				&& formaPagamento == other.formaPagamento && Objects.equals(id, other.id)
-				&& Objects.equals(nome, other.nome) && Objects.equals(pedidos, other.pedidos)
-				&& Objects.equals(telefone, other.telefone);
+		return Objects.equals(endereco, other.endereco) && formaPagamento == other.formaPagamento
+				&& Objects.equals(id, other.id) && Objects.equals(nome, other.nome)
+				&& Objects.equals(pedidos, other.pedidos) && Objects.equals(telefone, other.telefone);
 	}
 }

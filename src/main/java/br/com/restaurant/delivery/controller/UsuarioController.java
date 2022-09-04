@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.restaurant.delivery.data.vo.v1.UsuarioVO;
+import br.com.restaurant.delivery.data.vo.v1.usuario.UsuarioVO;
 import br.com.restaurant.delivery.service.usuario.UsuarioService;
 
 @RestController

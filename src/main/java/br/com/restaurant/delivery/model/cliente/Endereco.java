@@ -1,4 +1,4 @@
-package br.com.restaurant.delivery.model;
+package br.com.restaurant.delivery.model.cliente;
 
 import java.io.Serializable;
 import java.util.Objects;
