@@ -10,19 +10,19 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.restaurant.delivery.model.Usuario;
+import br.com.restaurant.delivery.data.vo.v1.security.LoginVO;
 import br.com.restaurant.delivery.service.security.AutenticacaoService;
 
 @RestController
-@RequestMapping("/restaurante-delivery/auth")
+@RequestMapping("/restaurante-delivery/login")
 public class AutenticacaoController {
 
 	@Autowired
 	private AutenticacaoService service;
 
 
-	@PostMapping(value = "/login")
-	public ResponseEntity<?> signin(@RequestBody Usuario data) {
+	@PostMapping()
+	public ResponseEntity<?> signin(@RequestBody LoginVO data) {
 		return service.signin(data);
 	}
 

@@ -10,8 +10,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import br.com.restaurant.delivery.data.vo.v1.UsuarioVO;
 import br.com.restaurant.delivery.mapper.DozerMapper;
-import br.com.restaurant.delivery.model.PerfilAcesso;
-import br.com.restaurant.delivery.model.Usuario;
+import br.com.restaurant.delivery.model.usuario.PerfilAcesso;
+import br.com.restaurant.delivery.model.usuario.Usuario;
 import br.com.restaurant.delivery.repository.UsuarioRepository;
 import br.com.restaurant.delivery.service.usuario.acao.AdicionaLinkHateoas;
 import br.com.restaurant.delivery.service.usuario.validacao.ValidacaoLocalizaPerfil;

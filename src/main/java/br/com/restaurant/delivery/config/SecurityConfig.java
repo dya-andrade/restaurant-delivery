@@ -6,7 +6,6 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -50,9 +49,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 				.and()
 				.authorizeRequests()
-				.antMatchers("/restaurante-delivery/auth/**", "/v3/api-docs/**", "/swagger-ui/**", "/actuator/**")
-				.permitAll().antMatchers(HttpMethod.GET, "/restaurante-delivery/**").permitAll()
-				.antMatchers(HttpMethod.DELETE, "/restaurante-delivery/**").hasRole("ADMIN")
+				.antMatchers("/restaurante-delivery/auth/**", "/v3/api-docs/**", "/swagger-ui/**").permitAll()
+				.antMatchers("/restaurante-delivery/usuario/**").hasRole("ADMIN")
 				.anyRequest().authenticated()
 				.and().cors()
 				.and().apply(new JwtConfigurer(tokenProvider));

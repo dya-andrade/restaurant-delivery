@@ -1,7 +1,6 @@
-package br.com.restaurant.delivery.model;
+package br.com.restaurant.delivery.model.usuario;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Objects;

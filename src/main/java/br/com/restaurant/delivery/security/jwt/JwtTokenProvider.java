@@ -20,7 +20,7 @@ import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
 
-import br.com.restaurant.delivery.data.vo.v1.TokenVO;
+import br.com.restaurant.delivery.data.vo.v1.security.TokenVO;
 import br.com.restaurant.delivery.exception.JwtAutenticacaoInvalidoException;
 import br.com.restaurant.delivery.service.security.AutorizacaoService;
 

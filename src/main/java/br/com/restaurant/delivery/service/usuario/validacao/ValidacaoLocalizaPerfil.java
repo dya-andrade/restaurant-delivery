@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 
 import br.com.restaurant.delivery.data.vo.v1.UsuarioVO;
 import br.com.restaurant.delivery.exception.RecursoNaoEncontradoException;
-import br.com.restaurant.delivery.model.PerfilAcesso;
+import br.com.restaurant.delivery.model.usuario.PerfilAcesso;
 import br.com.restaurant.delivery.repository.PerfilAcessoRepository;
 
 @Component

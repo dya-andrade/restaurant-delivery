@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 import br.com.restaurant.delivery.data.vo.v1.UsuarioVO;
 import br.com.restaurant.delivery.exception.ConflitoEntidadeException;
-import br.com.restaurant.delivery.model.Usuario;
+import br.com.restaurant.delivery.model.usuario.Usuario;
 import br.com.restaurant.delivery.repository.UsuarioRepository;
 
 @Component

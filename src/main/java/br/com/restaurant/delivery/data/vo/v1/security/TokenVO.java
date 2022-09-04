@@ -1,4 +1,4 @@
-package br.com.restaurant.delivery.data.vo.v1;
+package br.com.restaurant.delivery.data.vo.v1.security;
 
 import java.io.Serializable;
 import java.util.Date;

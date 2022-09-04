@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import br.com.restaurant.delivery.exception.RecursoNaoEncontradoException;
-import br.com.restaurant.delivery.model.Usuario;
+import br.com.restaurant.delivery.model.usuario.Usuario;
 import br.com.restaurant.delivery.repository.UsuarioRepository;
 
 @Component

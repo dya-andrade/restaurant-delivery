@@ -5,7 +5,7 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import br.com.restaurant.delivery.model.PerfilAcesso;
+import br.com.restaurant.delivery.model.usuario.PerfilAcesso;
 
 @Repository
 public interface PerfilAcessoRepository extends JpaRepository<PerfilAcesso, Long> {

@@ -12,8 +12,9 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import br.com.restaurant.delivery.data.vo.v1.TokenVO;
-import br.com.restaurant.delivery.model.Usuario;
+import br.com.restaurant.delivery.data.vo.v1.security.LoginVO;
+import br.com.restaurant.delivery.data.vo.v1.security.TokenVO;
+import br.com.restaurant.delivery.model.usuario.Usuario;
 import br.com.restaurant.delivery.repository.UsuarioRepository;
 import br.com.restaurant.delivery.security.jwt.JwtTokenProvider;
 
@@ -30,7 +31,7 @@ public class AutenticacaoService {
 	private UsuarioRepository repository;
 	
 
-	public ResponseEntity<?> signin(Usuario data) {
+	public ResponseEntity<?> signin(LoginVO data) {
 
 		if (checkIfParamsIsNotNull(data))
 			return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Solicitação de usuário inválida!");
@@ -88,7 +89,7 @@ public class AutenticacaoService {
 		return refreshToken == null || refreshToken.isBlank() || email == null || email.isBlank();
 	}
 
-	private boolean checkIfParamsIsNotNull(Usuario data) {
+	private boolean checkIfParamsIsNotNull(LoginVO data) {
 		return data == null || data.getEmail() == null || data.getEmail().isBlank() || data.getSenha() == null
 				|| data.getSenha().isBlank();
 	}
