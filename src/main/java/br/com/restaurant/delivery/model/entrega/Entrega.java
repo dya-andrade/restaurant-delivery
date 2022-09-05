@@ -2,6 +2,7 @@ package br.com.restaurant.delivery.model.entrega;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -30,8 +31,8 @@ public class Entrega implements Serializable {
 	
 	private LocalDateTime valor;
 	
-    @OneToMany(mappedBy = "entrega")
-    private List<Pedido> pedidos;
+    @OneToMany(targetEntity = Pedido.class)
+    private List<Pedido> pedidos = new ArrayList<Pedido>();
     
     public Entrega() {}
     

@@ -26,9 +26,6 @@ public class PedidoService {
 	private PedidoRepository pedidoRepository;
 	
 	@Autowired
-	private RealizaPersistenciaDoItens persistenciaDoItens;	
-	
-	@Autowired
 	private List<FinalizaPedidoNovo> finalizaPedidoNovo;
 	
 	@Autowired
@@ -41,8 +38,6 @@ public class PedidoService {
 
 		Pedido pedido = DozerMapper.parseObject(vo, Pedido.class);
 		
-		persistenciaDoItens.realiza(pedido);
-
 		finalizaPedidoNovo.forEach(r -> r.finaliza(pedido, vo));
 				
 		PedidoCompletoVO voCompleto = 

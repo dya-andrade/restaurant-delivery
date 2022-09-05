@@ -35,7 +35,8 @@ public class Pedido implements Serializable {
 	@JoinColumn(name = "id_cliente", nullable = false)
 	private Cliente cliente;
 
-	@OneToMany(mappedBy = "pedido", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(targetEntity = ItemPedido.class, 
+			fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<ItemPedido> itensPedido = new ArrayList<ItemPedido>();
 
 	private LocalDateTime data;
@@ -44,7 +45,7 @@ public class Pedido implements Serializable {
 
 	private BigDecimal desconto;
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(targetEntity = Entrega.class, fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_entrega")
 	private Entrega entrega;
 
