@@ -4,20 +4,18 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
-import br.com.restaurant.delivery.data.vo.v1.pedido.PedidoVO;
 import br.com.restaurant.delivery.model.pedido.ItemPedido;
 import br.com.restaurant.delivery.model.pedido.Pedido;
 
 @Component
-public class CalculaValorTotalPedido implements FinalizaPedidoNovo {
-	
+public class CalculaValorTotalPedido implements FinalizaPedido {
+
 	@Override
-	public void finaliza(Pedido pedido, PedidoVO vo) {
-		
-		List<ItemPedido> itensPedido = pedido.getItensPedido();
-	
+	public void finaliza(Pedido pedido, Long idCliente, List<ItemPedido> itensPedido) {
+
 		itensPedido.forEach(i -> i.calculaValorTotal());
-		
+		itensPedido.forEach(i -> i.setPedido(pedido));
+
 		pedido.setItensPedido(itensPedido);
 		pedido.calculaValorTotal();
 	}

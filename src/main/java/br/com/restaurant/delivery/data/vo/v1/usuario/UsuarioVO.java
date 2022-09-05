@@ -55,25 +55,4 @@ public class UsuarioVO extends RepresentationModel<UsuarioVO> implements Seriali
 	public void setPerfilAcesso(PerfilAcessoVO perfilAcesso) {
 		this.perfilAcesso = perfilAcesso;
 	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = super.hashCode();
-		result = prime * result + Objects.hash(email, id, perfilAcesso, senha);
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (!super.equals(obj))
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		UsuarioVO other = (UsuarioVO) obj;
-		return Objects.equals(email, other.email) && Objects.equals(id, other.id)
-				&& Objects.equals(perfilAcesso, other.perfilAcesso) && Objects.equals(senha, other.senha);
-	}
 }

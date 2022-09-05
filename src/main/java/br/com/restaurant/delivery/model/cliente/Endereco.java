@@ -1,7 +1,6 @@
 package br.com.restaurant.delivery.model.cliente;
 
 import java.io.Serializable;
-import java.util.Objects;
 import java.util.Set;
 
 import javax.persistence.Entity;
@@ -31,11 +30,9 @@ public class Endereco implements Serializable {
 
 	private String cep;
 
-	@OneToMany(mappedBy = "endereco")
+	@OneToMany
 	private Set<Cliente> clientes;
 	
-	public Endereco() {}
-
 	public Long getId() {
 		return id;
 	}
@@ -90,25 +87,5 @@ public class Endereco implements Serializable {
 
 	public void setClientes(Set<Cliente> clientes) {
 		this.clientes = clientes;
-	}
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(bairro, cep, clientes, id, localidade, logradouro, uf);
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Endereco other = (Endereco) obj;
-		return Objects.equals(bairro, other.bairro) && Objects.equals(cep, other.cep)
-				&& Objects.equals(clientes, other.clientes) && Objects.equals(id, other.id)
-				&& Objects.equals(localidade, other.localidade) && Objects.equals(logradouro, other.logradouro)
-				&& Objects.equals(uf, other.uf);
 	}
 }

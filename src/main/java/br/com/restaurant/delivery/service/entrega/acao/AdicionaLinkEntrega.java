@@ -8,18 +8,18 @@ import java.util.List;
 import org.springframework.stereotype.Component;
 
 import br.com.restaurant.delivery.controller.EntregaController;
-import br.com.restaurant.delivery.data.vo.v1.entrega.EntregaCompletaVO;
+import br.com.restaurant.delivery.data.vo.v1.entrega.EntregaVO;
 
 @Component
 public class AdicionaLinkEntrega {
 	
-	public EntregaCompletaVO adicionaLink(EntregaCompletaVO vo) {
+	public EntregaVO adicionaLink(EntregaVO vo) {
 		vo.add(linkTo(methodOn(EntregaController.class).buscaEntregaPeloId(vo.getId())).withSelfRel());
 
 		return vo;
 	}
 	
-	public List<EntregaCompletaVO> adicionaLinkLista(List<EntregaCompletaVO> vos){
+	public List<EntregaVO> adicionaLinkLista(List<EntregaVO> vos){
 		vos.forEach(vo -> vo
 				.add(linkTo(methodOn(EntregaController.class).buscaEntregaPeloId(vo.getId())).withSelfRel()));
 

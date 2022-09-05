@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import br.com.restaurant.delivery.data.vo.v1.cliente.ClienteCompletoVO;
+import br.com.restaurant.delivery.data.vo.v1.cliente.ClienteVO;
 import br.com.restaurant.delivery.data.vo.v1.cliente.ClienteVO;
 import br.com.restaurant.delivery.mapper.DozerMapper;
 import br.com.restaurant.delivery.model.cliente.Cliente;
@@ -31,26 +31,26 @@ public class ClienteService {
 	@Autowired
 	private AdicionaLinkCliente adicionaLink;
 
-	public ClienteCompletoVO criaCliente(@Valid ClienteVO vo) {
+	public ClienteVO criaCliente(@Valid ClienteVO vo) {
 
 		clienteDuplicado.valida(vo);
 		
 		Cliente cliente = DozerMapper.parseObject(vo, Cliente.class);
 		
-		ClienteCompletoVO voCompleto = DozerMapper.parseObject(repository.save(cliente), 
-				ClienteCompletoVO.class);
+		vo = DozerMapper.parseObject(repository.save(cliente), 
+				ClienteVO.class);
 
-		return adicionaLink.adicionaLink(voCompleto);
+		return adicionaLink.adicionaLink(vo);
 	}
 
-	public ClienteCompletoVO buscaClientePeloId(Long id) {
+	public ClienteVO buscaClientePeloId(Long id) {
 		
 		Cliente cliente = localizaCliente.valida(id);
 		
-		ClienteCompletoVO voCompleto = DozerMapper.parseObject(cliente, 
-				ClienteCompletoVO.class);
+		ClienteVO vo = DozerMapper.parseObject(cliente, 
+				ClienteVO.class);
 		
-		return adicionaLink.adicionaLink(voCompleto);
+		return adicionaLink.adicionaLink(vo);
 	}
 
 }

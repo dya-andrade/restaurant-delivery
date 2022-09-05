@@ -65,23 +65,4 @@ public class EnderecoVO implements Serializable {
 	public void setCep(String cep) {
 		this.cep = cep;
 	}
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(bairro, cep, localidade, logradouro, uf);
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		EnderecoVO other = (EnderecoVO) obj;
-		return Objects.equals(bairro, other.bairro) && Objects.equals(cep, other.cep)
-				&& Objects.equals(localidade, other.localidade) && Objects.equals(logradouro, other.logradouro)
-				&& Objects.equals(uf, other.uf);
-	}
 }

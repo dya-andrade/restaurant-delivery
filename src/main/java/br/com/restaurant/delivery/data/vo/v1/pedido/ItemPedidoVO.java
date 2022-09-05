@@ -2,7 +2,6 @@ package br.com.restaurant.delivery.data.vo.v1.pedido;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.Objects;
 
 import javax.validation.constraints.NotNull;
 
@@ -54,23 +53,5 @@ public class ItemPedidoVO implements Serializable {
 
 	public void setValorTotal(BigDecimal valorTotal) {
 		this.valorTotal = valorTotal;
-	}
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(comidaBebida, id, quantidade, valorTotal);
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		ItemPedidoVO other = (ItemPedidoVO) obj;
-		return comidaBebida == other.comidaBebida && Objects.equals(id, other.id)
-				&& Objects.equals(quantidade, other.quantidade) && Objects.equals(valorTotal, other.valorTotal);
 	}
 }

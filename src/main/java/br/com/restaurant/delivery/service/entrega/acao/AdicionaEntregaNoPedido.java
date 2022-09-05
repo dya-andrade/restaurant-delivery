@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import br.com.restaurant.delivery.data.vo.v1.entrega.EntregaVO;
+import br.com.restaurant.delivery.data.vo.v1.entrega.CadastraEntregaVO;
 import br.com.restaurant.delivery.model.entrega.Entrega;
 import br.com.restaurant.delivery.model.pedido.Pedido;
 import br.com.restaurant.delivery.repository.PedidoRepository;
@@ -21,7 +21,7 @@ public class AdicionaEntregaNoPedido {
 	@Autowired
 	private PedidoRepository pedidoRepository;
 
-	public void adiciona(Entrega entrega, EntregaVO vo) {
+	public void adiciona(Entrega entrega, CadastraEntregaVO vo) {
 		List<Pedido> pedidos = vo.getIdPedidos().stream().map(p -> localizaPedido.valida(p.longValue()))
 				.collect(Collectors.toList());
 

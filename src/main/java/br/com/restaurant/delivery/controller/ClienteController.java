@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.restaurant.delivery.data.vo.v1.cliente.ClienteCompletoVO;
+import br.com.restaurant.delivery.data.vo.v1.cliente.ClienteVO;
 import br.com.restaurant.delivery.data.vo.v1.cliente.ClienteVO;
 import br.com.restaurant.delivery.service.cliente.ClienteService;
 
@@ -23,12 +23,12 @@ public class ClienteController {
 	private ClienteService service;
 	
 	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ClienteCompletoVO criaCliente(@RequestBody @Valid ClienteVO vo) {
+	public ClienteVO criaCliente(@RequestBody @Valid ClienteVO vo) {
 		return service.criaCliente(vo);
 	}
 
 	@GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ClienteCompletoVO buscaClientePeloId(@PathVariable("id") Long id) {
+	public ClienteVO buscaClientePeloId(@PathVariable("id") Long id) {
 		return service.buscaClientePeloId(id);
 	}
 

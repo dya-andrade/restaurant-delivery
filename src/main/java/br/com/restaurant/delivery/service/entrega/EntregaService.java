@@ -1,13 +1,14 @@
 package br.com.restaurant.delivery.service.entrega;
 
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import br.com.restaurant.delivery.data.vo.v1.entrega.EntregaCompletaVO;
 import br.com.restaurant.delivery.data.vo.v1.entrega.EntregaVO;
+import br.com.restaurant.delivery.data.vo.v1.entrega.CadastraEntregaVO;
 import br.com.restaurant.delivery.mapper.DozerMapper;
 import br.com.restaurant.delivery.model.entrega.Entrega;
 import br.com.restaurant.delivery.repository.EntregaRepository;
@@ -32,26 +33,26 @@ public class EntregaService {
 	private ValidacaoLocalizaEntrega localizaEntrega;
 	
 
-	public EntregaCompletaVO criaEntrega(@Valid EntregaVO vo) {
+	public EntregaVO criaEntrega(@Valid CadastraEntregaVO vo) {
 		
 		Entrega entrega = DozerMapper.parseObject(vo, Entrega.class);
 
 		adicionaEntregaNoPedido.adiciona(entrega, vo);
 	
-		EntregaCompletaVO voCompleto = 
-				DozerMapper.parseObject(entregaRepository.save(entrega), EntregaCompletaVO.class);
+		EntregaVO entregaVO = 
+				DozerMapper.parseObject(entregaRepository.save(entrega), EntregaVO.class);
 
-		return adicionaLink.adicionaLink(voCompleto);
+		return adicionaLink.adicionaLink(entregaVO);
 	}
 
 
-	public EntregaCompletaVO buscaEntregaPeloId(Long id) {
+	public EntregaVO buscaEntregaPeloId(Long id) {
 		Entrega entrega = localizaEntrega.valida(id);
 		
-		EntregaCompletaVO voCompleto = 
-				DozerMapper.parseObject(entrega, EntregaCompletaVO.class);
+		EntregaVO vo = 
+				DozerMapper.parseObject(entrega, EntregaVO.class);
 
-		return adicionaLink.adicionaLink(voCompleto);
+		return adicionaLink.adicionaLink(vo);
 	}
 
 

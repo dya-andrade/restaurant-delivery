@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -31,11 +30,9 @@ public class Entrega implements Serializable {
 	
 	private LocalDateTime valor;
 	
-    @OneToMany(targetEntity = Pedido.class)
+    @OneToMany
     private List<Pedido> pedidos = new ArrayList<Pedido>();
-    
-    public Entrega() {}
-    
+        
     public void adicionaPedidos(List<Pedido> pedidos) {
     	this.pedidos = pedidos;
     	this.data = LocalDateTime.now();
@@ -79,24 +76,5 @@ public class Entrega implements Serializable {
 
 	public void setPedidos(List<Pedido> pedidos) {
 		this.pedidos = pedidos;
-	}
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(data, id, motoboy, pedidos, valor);
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Entrega other = (Entrega) obj;
-		return Objects.equals(data, other.data) && Objects.equals(id, other.id)
-				&& Objects.equals(motoboy, other.motoboy) && Objects.equals(pedidos, other.pedidos)
-				&& Objects.equals(valor, other.valor);
 	}
 }

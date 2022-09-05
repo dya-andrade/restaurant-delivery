@@ -2,30 +2,46 @@ package br.com.restaurant.delivery.data.vo.v1.pedido;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Objects;
 
-import javax.validation.constraints.NotNull;
+import org.springframework.hateoas.RepresentationModel;
 
-@NotNull
-public class PedidoVO implements Serializable {
+import br.com.restaurant.delivery.data.vo.v1.cliente.ClienteVO;
+import br.com.restaurant.delivery.data.vo.v1.entrega.EntregaVO;
+
+public class PedidoVO extends RepresentationModel<PedidoVO> implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	@NotNull
-	private Long idCliente;
+	private Long id;
 
-	@NotNull
+	private ClienteVO cliente;
+
 	private List<ItemPedidoVO> itensPedido;
+
+	private LocalDateTime data;
+
+	private BigDecimal valorTotal;
 
 	private BigDecimal desconto;
 
-	public Long getIdCliente() {
-		return idCliente;
+	private EntregaVO entrega;
+
+	public Long getId() {
+		return id;
 	}
 
-	public void setIdCliente(Long idCliente) {
-		this.idCliente = idCliente;
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public ClienteVO getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(ClienteVO cliente) {
+		this.cliente = cliente;
 	}
 
 	public List<ItemPedidoVO> getItensPedido() {
@@ -36,6 +52,22 @@ public class PedidoVO implements Serializable {
 		this.itensPedido = itensPedido;
 	}
 
+	public LocalDateTime getData() {
+		return data;
+	}
+
+	public void setData(LocalDateTime data) {
+		this.data = data;
+	}
+
+	public BigDecimal getValorTotal() {
+		return valorTotal;
+	}
+
+	public void setValorTotal(BigDecimal valorTotal) {
+		this.valorTotal = valorTotal;
+	}
+
 	public BigDecimal getDesconto() {
 		return desconto;
 	}
@@ -44,24 +76,11 @@ public class PedidoVO implements Serializable {
 		this.desconto = desconto;
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = super.hashCode();
-		result = prime * result + Objects.hash(desconto, idCliente, itensPedido);
-		return result;
+	public EntregaVO getEntrega() {
+		return entrega;
 	}
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (!super.equals(obj))
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		PedidoVO other = (PedidoVO) obj;
-		return Objects.equals(desconto, other.desconto) && Objects.equals(idCliente, other.idCliente)
-				&& Objects.equals(itensPedido, other.itensPedido);
+	public void setEntrega(EntregaVO entrega) {
+		this.entrega = entrega;
 	}
 }

@@ -1,17 +1,22 @@
 package br.com.restaurant.delivery.data.vo.v1.cliente;
 
 import java.io.Serializable;
-import java.util.Objects;
+import java.util.List;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+import org.springframework.hateoas.RepresentationModel;
+
+import br.com.restaurant.delivery.data.vo.v1.pedido.PedidoVO;
 import br.com.restaurant.delivery.model.cliente.FormaPagamento;
 
 @NotNull
-public class ClienteVO implements Serializable {
+public class ClienteVO extends RepresentationModel<ClienteVO> implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+
+	private Long id;
 
 	@NotBlank
 	private String nome;
@@ -24,6 +29,16 @@ public class ClienteVO implements Serializable {
 
 	@NotNull
 	private FormaPagamento formaPagamento;
+
+	private List<PedidoVO> pedidos;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	public String getNome() {
 		return nome;
@@ -57,21 +72,11 @@ public class ClienteVO implements Serializable {
 		this.formaPagamento = formaPagamento;
 	}
 
-	@Override
-	public int hashCode() {
-		return Objects.hash(endereco, formaPagamento, nome, telefone);
+	public List<PedidoVO> getPedidos() {
+		return pedidos;
 	}
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		ClienteVO other = (ClienteVO) obj;
-		return Objects.equals(endereco, other.endereco) && formaPagamento == other.formaPagamento
-				&& Objects.equals(nome, other.nome) && Objects.equals(telefone, other.telefone);
+	public void setPedidos(List<PedidoVO> pedidos) {
+		this.pedidos = pedidos;
 	}
 }

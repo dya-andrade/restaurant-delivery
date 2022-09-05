@@ -3,7 +3,6 @@ package br.com.restaurant.delivery.model.usuario;
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -73,24 +72,6 @@ public class Usuario implements Serializable, UserDetails {
 
 	public void setPerfilAcesso(PerfilAcesso perfilAcesso) {
 		this.perfilAcesso = perfilAcesso;
-	}
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(email, perfilAcesso, senha);
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Usuario other = (Usuario) obj;
-		return Objects.equals(email, other.email) && Objects.equals(perfilAcesso, other.perfilAcesso)
-				&& Objects.equals(senha, other.senha);
 	}
 
 	@Override

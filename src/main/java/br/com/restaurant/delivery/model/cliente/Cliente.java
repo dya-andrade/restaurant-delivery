@@ -3,7 +3,6 @@ package br.com.restaurant.delivery.model.cliente;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -43,11 +42,8 @@ public class Cliente implements Serializable {
 	@Enumerated(EnumType.STRING)
 	private FormaPagamento formaPagamento;
 
-	@OneToMany(mappedBy = "cliente")
+	@OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY)
 	private List<Pedido> pedidos = new ArrayList<Pedido>();
-
-	public Cliente() {
-	}
 
 	public Long getId() {
 		return id;
@@ -95,24 +91,5 @@ public class Cliente implements Serializable {
 
 	public void setPedidos(List<Pedido> pedidos) {
 		this.pedidos = pedidos;
-	}
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(endereco, formaPagamento, id, nome, pedidos, telefone);
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Cliente other = (Cliente) obj;
-		return Objects.equals(endereco, other.endereco) && formaPagamento == other.formaPagamento
-				&& Objects.equals(id, other.id) && Objects.equals(nome, other.nome)
-				&& Objects.equals(pedidos, other.pedidos) && Objects.equals(telefone, other.telefone);
 	}
 }

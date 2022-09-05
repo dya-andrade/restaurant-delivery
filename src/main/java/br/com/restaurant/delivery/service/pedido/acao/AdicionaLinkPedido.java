@@ -8,18 +8,18 @@ import java.util.List;
 import org.springframework.stereotype.Component;
 
 import br.com.restaurant.delivery.controller.PedidoController;
-import br.com.restaurant.delivery.data.vo.v1.pedido.PedidoCompletoVO;
+import br.com.restaurant.delivery.data.vo.v1.pedido.PedidoVO;
 
 @Component
 public class AdicionaLinkPedido {
 	
-	public PedidoCompletoVO adicionaLink(PedidoCompletoVO vo) {
+	public PedidoVO adicionaLink(PedidoVO vo) {
 		vo.add(linkTo(methodOn(PedidoController.class).buscaPedidoPeloId(vo.getId())).withSelfRel());
 
 		return vo;
 	}
 	
-	public List<PedidoCompletoVO> adicionaLinkLista(List<PedidoCompletoVO> vos){
+	public List<PedidoVO> adicionaLinkLista(List<PedidoVO> vos){
 		vos.forEach(vo -> vo
 				.add(linkTo(methodOn(PedidoController.class).buscaPedidoPeloId(vo.getId())).withSelfRel()));
 

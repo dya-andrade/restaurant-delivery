@@ -80,23 +80,4 @@ public class TokenVO implements Serializable {
 	public void setRefreshToken(String refreshToken) {
 		this.refreshToken = refreshToken;
 	}
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(accessToken, autenticado, criado, email, expiracao, refreshToken);
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		TokenVO other = (TokenVO) obj;
-		return Objects.equals(accessToken, other.accessToken) && Objects.equals(autenticado, other.autenticado)
-				&& Objects.equals(criado, other.criado) && Objects.equals(email, other.email)
-				&& Objects.equals(expiracao, other.expiracao) && Objects.equals(refreshToken, other.refreshToken);
-	}
 }

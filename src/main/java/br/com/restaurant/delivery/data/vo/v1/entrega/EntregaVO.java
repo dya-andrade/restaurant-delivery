@@ -3,24 +3,40 @@ package br.com.restaurant.delivery.data.vo.v1.entrega;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Objects;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
+import org.springframework.hateoas.RepresentationModel;
 
-@NotNull
-public class EntregaVO implements Serializable {
+import br.com.restaurant.delivery.data.vo.v1.pedido.PedidoVO;
+
+public class EntregaVO extends RepresentationModel<EntregaVO>  implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+
+	private Long id;
 	
-	@NotBlank
+	private LocalDateTime data;
+	
 	private String motoboy;
 	
-	@NotBlank
 	private LocalDateTime valor;
+	
+    private List<PedidoVO> pedidos;
 
-	@NotNull
-    private List<Long> idPedidos;
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public LocalDateTime getData() {
+		return data;
+	}
+
+	public void setData(LocalDateTime data) {
+		this.data = data;
+	}
 
 	public String getMotoboy() {
 		return motoboy;
@@ -38,29 +54,11 @@ public class EntregaVO implements Serializable {
 		this.valor = valor;
 	}
 
-	public List<Long> getIdPedidos() {
-		return idPedidos;
+	public List<PedidoVO> getPedidos() {
+		return pedidos;
 	}
 
-	public void setIdPedidos(List<Long> idPedidos) {
-		this.idPedidos = idPedidos;
-	}
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(idPedidos, motoboy, valor);
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		EntregaVO other = (EntregaVO) obj;
-		return Objects.equals(idPedidos, other.idPedidos) && Objects.equals(motoboy, other.motoboy)
-				&& Objects.equals(valor, other.valor);
+	public void setPedidos(List<PedidoVO> pedidos) {
+		this.pedidos = pedidos;
 	}
 }
