@@ -3,6 +3,7 @@ package br.com.restaurant.delivery.model.pedido;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -30,13 +31,12 @@ public class Pedido implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_cliente", nullable = false)
 	private Cliente cliente;
 
-	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
-	@JoinColumn(name = "id_pedido")
-	private List<ItemPedido> itensPedido;
+	@OneToMany(mappedBy = "pedido", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	private List<ItemPedido> itensPedido = new ArrayList<ItemPedido>();
 
 	private LocalDateTime data;
 
@@ -44,7 +44,7 @@ public class Pedido implements Serializable {
 
 	private BigDecimal desconto;
 
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_entrega")
 	private Entrega entrega;
 

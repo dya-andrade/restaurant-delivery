@@ -5,9 +5,13 @@ import java.math.BigDecimal;
 import java.util.Objects;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -19,15 +23,20 @@ public class ItemPedido implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
+	@Enumerated(EnumType.STRING)
 	private ComidaBebida comidaBebida;
-	
+
 	private Integer quantidade;
-	
+
 	private BigDecimal valorTotal;
-	
-	public ItemPedido(){}
-	
+
+	@ManyToOne(targetEntity = Pedido.class)
+	@JoinColumn(name = "id_pedido", nullable = false)
+	private Pedido pedido;
+
+	public ItemPedido() {}
+
 	public void calculaValorTotal() {
 		BigDecimal quantidade = new BigDecimal(this.quantidade);
 		BigDecimal valorTotal = comidaBebida.getValor().multiply(quantidade);
@@ -66,9 +75,17 @@ public class ItemPedido implements Serializable {
 		this.valorTotal = valorTotal;
 	}
 
+	public Pedido getPedido() {
+		return pedido;
+	}
+
+	public void setPedido(Pedido pedido) {
+		this.pedido = pedido;
+	}
+
 	@Override
 	public int hashCode() {
-		return Objects.hash(comidaBebida, id, quantidade, valorTotal);
+		return Objects.hash(comidaBebida, id, pedido, quantidade, valorTotal);
 	}
 
 	@Override
@@ -81,6 +98,7 @@ public class ItemPedido implements Serializable {
 			return false;
 		ItemPedido other = (ItemPedido) obj;
 		return comidaBebida == other.comidaBebida && Objects.equals(id, other.id)
-				&& Objects.equals(quantidade, other.quantidade) && Objects.equals(valorTotal, other.valorTotal);
+				&& Objects.equals(pedido, other.pedido) && Objects.equals(quantidade, other.quantidade)
+				&& Objects.equals(valorTotal, other.valorTotal);
 	}
 }

@@ -49,7 +49,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 				.and()
 				.authorizeRequests()
-				.antMatchers("/restaurante-delivery/auth/**", "/v3/api-docs/**", "/swagger-ui/**").permitAll()
+				.antMatchers("/restaurante-delivery/login/**", "/v3/api-docs/**", "/swagger-ui/**").permitAll()
 				.antMatchers("/restaurante-delivery/usuario/**").hasRole("ADMIN")
 				.anyRequest().authenticated()
 				.and().cors()

@@ -13,6 +13,7 @@ import br.com.restaurant.delivery.model.entrega.Entrega;
 import br.com.restaurant.delivery.repository.EntregaRepository;
 import br.com.restaurant.delivery.service.entrega.acao.AdicionaEntregaNoPedido;
 import br.com.restaurant.delivery.service.entrega.acao.AdicionaLinkEntrega;
+import br.com.restaurant.delivery.service.entrega.validacao.ValidacaoLocalizaEntrega;
 
 @Service
 @Transactional
@@ -27,6 +28,9 @@ public class EntregaService {
 	@Autowired
 	private AdicionaLinkEntrega adicionaLink;
 	
+	@Autowired
+	private ValidacaoLocalizaEntrega localizaEntrega;
+	
 
 	public EntregaCompletaVO criaEntrega(@Valid EntregaVO vo) {
 		
@@ -36,6 +40,16 @@ public class EntregaService {
 	
 		EntregaCompletaVO voCompleto = 
 				DozerMapper.parseObject(entregaRepository.save(entrega), EntregaCompletaVO.class);
+
+		return adicionaLink.adicionaLink(voCompleto);
+	}
+
+
+	public EntregaCompletaVO buscaEntregaPeloId(Long id) {
+		Entrega entrega = localizaEntrega.valida(id);
+		
+		EntregaCompletaVO voCompleto = 
+				DozerMapper.parseObject(entrega, EntregaCompletaVO.class);
 
 		return adicionaLink.adicionaLink(voCompleto);
 	}

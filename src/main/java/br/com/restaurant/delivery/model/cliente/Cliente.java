@@ -1,13 +1,15 @@
 package br.com.restaurant.delivery.model.cliente;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -38,10 +40,11 @@ public class Cliente implements Serializable {
 	@JoinColumn(name = "id_endereco")
 	private Endereco endereco;
 
+	@Enumerated(EnumType.STRING)
 	private FormaPagamento formaPagamento;
 
 	@OneToMany(mappedBy = "cliente")
-	private List<Pedido> pedidos;
+	private List<Pedido> pedidos = new ArrayList<Pedido>();
 
 	public Cliente() {
 	}
