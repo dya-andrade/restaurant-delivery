@@ -18,22 +18,6 @@ spring:
     url: jdbc:mysql://localhost:3306/delivery?useTimezone=true&serverTimezone=UTC
     user: root
     password: root 
-
-#spring:
-#  datasource:
-#    url: jdbc:h2:mem:delivery
-#    username: sa
-#    password: password
-#    driverClassName: org.h2.Driver
-#  jpa:
-#    hibernate.ddl-auto: create
-#    generate-ddl: true
-#    properties:
-#      hibernate:
-#      dialect: org.hibernate.dialect.H2Dialect
-#    show-sql: true 
-    
-    #http://localhost:8080/h2-console
     
 security:
   jwt:

@@ -29,7 +29,7 @@ public class PedidoController {
 	@Autowired
 	private PedidoService service;
 	
-	@PostMapping(value = "/{idCliente}", consumes = MediaType.APPLICATION_JSON_VALUE, 
+	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, 
 			produces = MediaType.APPLICATION_JSON_VALUE)
 	public PedidoVO criaPedido(@RequestBody @Valid CadastraPedidoVO vo) {
 		return service.criaPedido(vo);
