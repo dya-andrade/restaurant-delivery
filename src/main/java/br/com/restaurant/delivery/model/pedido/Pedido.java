@@ -17,10 +17,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 import br.com.restaurant.delivery.model.cliente.Cliente;
-import br.com.restaurant.delivery.model.entrega.Entrega;
 
 @Entity
 @Table(name = "pedido")
@@ -43,11 +40,7 @@ public class Pedido implements Serializable {
 
 	private BigDecimal valorTotal = new BigDecimal("0");
 
-	private BigDecimal desconto;
-
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "id_entrega")
-	private Entrega entrega;
+	private BigDecimal desconto = new BigDecimal("0");
 
 	public void calculaValorTotal() {
 		itensPedido.forEach(i -> 
@@ -103,11 +96,4 @@ public class Pedido implements Serializable {
 		this.desconto = desconto;
 	}
 
-	public Entrega getEntrega() {
-		return entrega;
-	}
-
-	public void setEntrega(Entrega entrega) {
-		this.entrega = entrega;
-	}
 }

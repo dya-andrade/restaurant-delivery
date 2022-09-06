@@ -7,6 +7,6 @@ import br.com.restaurant.delivery.model.pedido.Pedido;
 
 public interface FinalizaPedido {
 	
-	void finaliza(Pedido pedido, Long idCliente, List<ItemPedido> itensPedido);
+	void finaliza(Pedido pedido, List<ItemPedido> itensPedido);
 
 }

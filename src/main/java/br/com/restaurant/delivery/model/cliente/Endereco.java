@@ -1,13 +1,11 @@
 package br.com.restaurant.delivery.model.cliente;
 
 import java.io.Serializable;
-import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -29,9 +27,6 @@ public class Endereco implements Serializable {
 	private String uf;
 
 	private String cep;
-
-	@OneToMany
-	private Set<Cliente> clientes;
 	
 	public Long getId() {
 		return id;
@@ -79,13 +74,5 @@ public class Endereco implements Serializable {
 
 	public void setCep(String cep) {
 		this.cep = cep;
-	}
-
-	public Set<Cliente> getClientes() {
-		return clientes;
-	}
-
-	public void setClientes(Set<Cliente> clientes) {
-		this.clientes = clientes;
 	}
 }

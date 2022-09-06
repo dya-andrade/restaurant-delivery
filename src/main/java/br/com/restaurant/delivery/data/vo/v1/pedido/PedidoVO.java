@@ -8,7 +8,6 @@ import java.util.List;
 import org.springframework.hateoas.RepresentationModel;
 
 import br.com.restaurant.delivery.data.vo.v1.cliente.ClienteVO;
-import br.com.restaurant.delivery.data.vo.v1.entrega.EntregaVO;
 
 public class PedidoVO extends RepresentationModel<PedidoVO> implements Serializable {
 
@@ -25,8 +24,6 @@ public class PedidoVO extends RepresentationModel<PedidoVO> implements Serializa
 	private BigDecimal valorTotal;
 
 	private BigDecimal desconto;
-
-	private EntregaVO entrega;
 
 	public Long getId() {
 		return id;
@@ -74,13 +71,5 @@ public class PedidoVO extends RepresentationModel<PedidoVO> implements Serializa
 
 	public void setDesconto(BigDecimal desconto) {
 		this.desconto = desconto;
-	}
-
-	public EntregaVO getEntrega() {
-		return entrega;
-	}
-
-	public void setEntrega(EntregaVO entrega) {
-		this.entrega = entrega;
 	}
 }

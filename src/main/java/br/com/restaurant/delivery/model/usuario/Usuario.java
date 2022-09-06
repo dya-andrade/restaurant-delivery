@@ -12,9 +12,12 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.Valid;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+
+import br.com.restaurant.delivery.data.vo.v1.usuario.UsuarioVO;
 
 @Entity
 @Table(name = "usuario")
@@ -35,7 +38,9 @@ public class Usuario implements Serializable, UserDetails {
 	@JoinColumn(name = "id_perfil_acesso")
 	private PerfilAcesso perfilAcesso;
 
-	public Usuario() {
+	public void atualizaUsuario(@Valid UsuarioVO vo) {
+		this.email = vo.getEmail();
+		this.senha = vo.getSenha();
 	}
 
 	public String getRole() {

@@ -1,8 +1,6 @@
 package br.com.restaurant.delivery.model.cliente;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -15,10 +13,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.Valid;
 
-import br.com.restaurant.delivery.model.pedido.Pedido;
+import br.com.restaurant.delivery.data.vo.v1.cliente.ClienteVO;
+import br.com.restaurant.delivery.mapper.DozerMapper;
 
 @Entity
 @Table(name = "cliente")
@@ -41,9 +40,13 @@ public class Cliente implements Serializable {
 
 	@Enumerated(EnumType.STRING)
 	private FormaPagamento formaPagamento;
-
-	@OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY)
-	private List<Pedido> pedidos = new ArrayList<Pedido>();
+	
+	public void atualizaCliente(@Valid ClienteVO vo) {
+		this.nome = vo.getNome();
+		this.telefone = vo.getTelefone();
+		this.endereco = DozerMapper.parseObject(vo.getEndereco(), Endereco.class);
+		this.formaPagamento = vo.getFormaPagamento();
+	}
 
 	public Long getId() {
 		return id;
@@ -83,13 +86,5 @@ public class Cliente implements Serializable {
 
 	public void setFormaPagamento(FormaPagamento formaPagamento) {
 		this.formaPagamento = formaPagamento;
-	}
-
-	public List<Pedido> getPedidos() {
-		return pedidos;
-	}
-
-	public void setPedidos(List<Pedido> pedidos) {
-		this.pedidos = pedidos;
 	}
 }

@@ -1,6 +1,7 @@
 package br.com.restaurant.delivery.data.vo.v1.entrega;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -18,7 +19,7 @@ public class EntregaVO extends RepresentationModel<EntregaVO>  implements Serial
 	
 	private String motoboy;
 	
-	private LocalDateTime valor;
+	private BigDecimal valor;
 	
     private List<PedidoVO> pedidos;
 
@@ -46,11 +47,11 @@ public class EntregaVO extends RepresentationModel<EntregaVO>  implements Serial
 		this.motoboy = motoboy;
 	}
 
-	public LocalDateTime getValor() {
+	public BigDecimal getValor() {
 		return valor;
 	}
 
-	public void setValor(LocalDateTime valor) {
+	public void setValor(BigDecimal valor) {
 		this.valor = valor;
 	}
 

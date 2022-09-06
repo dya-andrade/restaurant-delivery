@@ -40,3 +40,9 @@ security:
     token:
       secret-key: 53cr53
       expire-length: 3600000
+      
+springdoc:
+  pathsToMatch: 
+  - /restaurante-delivery/**
+  swagger-ui:
+    use-root-path: true 

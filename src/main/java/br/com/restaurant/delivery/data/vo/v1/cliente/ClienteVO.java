@@ -1,14 +1,12 @@
 package br.com.restaurant.delivery.data.vo.v1.cliente;
 
 import java.io.Serializable;
-import java.util.List;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.hateoas.RepresentationModel;
 
-import br.com.restaurant.delivery.data.vo.v1.pedido.PedidoVO;
 import br.com.restaurant.delivery.model.cliente.FormaPagamento;
 
 @NotNull
@@ -29,8 +27,6 @@ public class ClienteVO extends RepresentationModel<ClienteVO> implements Seriali
 
 	@NotNull
 	private FormaPagamento formaPagamento;
-
-	private List<PedidoVO> pedidos;
 
 	public Long getId() {
 		return id;
@@ -70,13 +66,5 @@ public class ClienteVO extends RepresentationModel<ClienteVO> implements Seriali
 
 	public void setFormaPagamento(FormaPagamento formaPagamento) {
 		this.formaPagamento = formaPagamento;
-	}
-
-	public List<PedidoVO> getPedidos() {
-		return pedidos;
-	}
-
-	public void setPedidos(List<PedidoVO> pedidos) {
-		this.pedidos = pedidos;
 	}
 }

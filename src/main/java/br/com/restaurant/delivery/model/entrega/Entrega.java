@@ -1,6 +1,7 @@
 package br.com.restaurant.delivery.model.entrega;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +12,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.Valid;
 
+import br.com.restaurant.delivery.data.vo.v1.entrega.CadastraEntregaVO;
 import br.com.restaurant.delivery.model.pedido.Pedido;
 
 @Entity
@@ -28,7 +31,7 @@ public class Entrega implements Serializable {
 	
 	private String motoboy;
 	
-	private LocalDateTime valor;
+	private BigDecimal valor;
 	
     @OneToMany
     private List<Pedido> pedidos = new ArrayList<Pedido>();
@@ -37,6 +40,11 @@ public class Entrega implements Serializable {
     	this.pedidos = pedidos;
     	this.data = LocalDateTime.now();
     }
+    
+	public void atualizaDados(@Valid CadastraEntregaVO vo) {
+		this.motoboy = vo.getMotoboy();
+		this.valor = vo.getValor();
+	}
 
 	public Long getId() {
 		return id;
@@ -62,11 +70,11 @@ public class Entrega implements Serializable {
 		this.motoboy = motoboy;
 	}
 
-	public LocalDateTime getValor() {
+	public BigDecimal getValor() {
 		return valor;
 	}
 
-	public void setValor(LocalDateTime valor) {
+	public void setValor(BigDecimal valor) {
 		this.valor = valor;
 	}
 

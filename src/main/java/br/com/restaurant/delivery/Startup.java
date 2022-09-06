@@ -15,7 +15,7 @@ public class Startup {
 	public static void main(String[] args) {
 		SpringApplication.run(Startup.class, args);
 		
-		Map<String, PasswordEncoder> encoders = new HashMap<>();
+		Map<String, PasswordEncoder> encoders = new HashMap<String, PasswordEncoder>();
 		
 		encoders.put("pbkdf2", new Pbkdf2PasswordEncoder());
 

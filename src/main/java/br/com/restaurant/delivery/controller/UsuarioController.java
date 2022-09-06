@@ -18,9 +18,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.restaurant.delivery.data.vo.v1.usuario.UsuarioVO;
 import br.com.restaurant.delivery.service.usuario.UsuarioService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
 @RequestMapping(value = "/restaurante-delivery/usuario")
+@Tag(name = "Usuário", description = "Criar, buscar, atualizar e deletar usuários.")
 public class UsuarioController {
 	
 	@Autowired

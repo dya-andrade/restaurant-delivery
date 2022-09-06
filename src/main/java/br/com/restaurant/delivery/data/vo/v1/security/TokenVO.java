@@ -2,7 +2,6 @@ package br.com.restaurant.delivery.data.vo.v1.security;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.Objects;
 
 public class TokenVO implements Serializable {
 

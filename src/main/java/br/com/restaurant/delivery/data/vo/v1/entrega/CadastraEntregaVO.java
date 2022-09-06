@@ -1,9 +1,8 @@
 package br.com.restaurant.delivery.data.vo.v1.entrega;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.math.BigDecimal;
 import java.util.List;
-import java.util.Objects;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -16,8 +15,8 @@ public class CadastraEntregaVO implements Serializable {
 	@NotBlank
 	private String motoboy;
 	
-	@NotBlank
-	private LocalDateTime valor;
+	@NotNull
+	private BigDecimal valor;
 
 	@NotNull
     private List<Long> idPedidos;
@@ -30,11 +29,11 @@ public class CadastraEntregaVO implements Serializable {
 		this.motoboy = motoboy;
 	}
 
-	public LocalDateTime getValor() {
+	public BigDecimal getValor() {
 		return valor;
 	}
 
-	public void setValor(LocalDateTime valor) {
+	public void setValor(BigDecimal valor) {
 		this.valor = valor;
 	}
 

@@ -12,9 +12,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.restaurant.delivery.data.vo.v1.security.LoginVO;
 import br.com.restaurant.delivery.service.security.AutenticacaoService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
 @RequestMapping("/restaurante-delivery/login")
+@Tag(name = "Login", description = "Realizar login na aplicação.")
 public class LoginController {
 
 	@Autowired

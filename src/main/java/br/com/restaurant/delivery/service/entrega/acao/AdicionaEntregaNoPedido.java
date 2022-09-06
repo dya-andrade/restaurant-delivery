@@ -9,7 +9,6 @@ import org.springframework.stereotype.Component;
 import br.com.restaurant.delivery.data.vo.v1.entrega.CadastraEntregaVO;
 import br.com.restaurant.delivery.model.entrega.Entrega;
 import br.com.restaurant.delivery.model.pedido.Pedido;
-import br.com.restaurant.delivery.repository.PedidoRepository;
 import br.com.restaurant.delivery.service.pedido.validacao.ValidacaoLocalizaPedido;
 
 @Component
@@ -18,17 +17,11 @@ public class AdicionaEntregaNoPedido {
 	@Autowired
 	private ValidacaoLocalizaPedido localizaPedido;
 
-	@Autowired
-	private PedidoRepository pedidoRepository;
 
 	public void adiciona(Entrega entrega, CadastraEntregaVO vo) {
 		List<Pedido> pedidos = vo.getIdPedidos().stream().map(p -> localizaPedido.valida(p.longValue()))
 				.collect(Collectors.toList());
 
 		entrega.adicionaPedidos(pedidos);
-
-		pedidos.forEach(p -> p.setEntrega(entrega));
-
-		pedidoRepository.saveAll(pedidos);
 	}
 }

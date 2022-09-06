@@ -11,10 +11,8 @@ import br.com.restaurant.delivery.model.pedido.Pedido;
 public class CalculaValorTotalPedido implements FinalizaPedido {
 
 	@Override
-	public void finaliza(Pedido pedido, Long idCliente, List<ItemPedido> itensPedido) {
-
+	public void finaliza(Pedido pedido, List<ItemPedido> itensPedido) {
 		itensPedido.forEach(i -> i.calculaValorTotal());
-		itensPedido.forEach(i -> i.setPedido(pedido));
 
 		pedido.setItensPedido(itensPedido);
 		pedido.calculaValorTotal();

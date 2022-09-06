@@ -70,6 +70,8 @@ public class UsuarioService {
 
 		Usuario usuario = localizaUsuario.valida(id);
 		
+		usuario.atualizaUsuario(vo);
+		
 		adicionaPerfilNoUsuario.adiciona(usuario, vo);
 		
 		usuarioRepository.save(usuario);
