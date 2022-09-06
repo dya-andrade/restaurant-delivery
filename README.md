@@ -1,7 +1,7 @@
 # Restaurant Delivery
 CONCLUÍDO - Desafio para criar uma API RESTful de um delivery de restaurante.
 
-#Desenvolvimento
+# Desenvolvimento
 
 * Java 8
 
@@ -17,24 +17,24 @@ CONCLUÍDO - Desafio para criar uma API RESTful de um delivery de restaurante.
 
 * JWT com security para autenticação via token
 
-#Swagger
+# Swagger
 
 ![image](https://user-images.githubusercontent.com/101612046/188738349-09e86547-bca3-4a7c-ae0d-3de2fa634918.png)
 
-#Login
+# Login
 
-*JSON para realizar login
+* JSON para realizar login
 
-```
+```json
 {
     "email":"admin.teste@gmail.com",
     "senha":"123456"
 }
 ```
 
-*JSON resposta
+* JSON resposta
 
-```
+```json
 {
     "email": "admin.teste@gmail.com",
     "autenticado": true,
@@ -48,11 +48,11 @@ CONCLUÍDO - Desafio para criar uma API RESTful de um delivery de restaurante.
 ![image](https://user-images.githubusercontent.com/101612046/188742841-c16a23cb-7cc3-4ad1-b218-c260393c0a6b.png)
 
 
-#Usuário
+# Usuário
 
-*JSON para criar usuário
+* JSON para criar usuário
 
-```
+```json
 {
     "email":"dyane.aaraujo@gmail.com",
     "senha":"123456",
@@ -63,9 +63,9 @@ CONCLUÍDO - Desafio para criar uma API RESTful de um delivery de restaurante.
 ```
 
 
-*JSON resposta
+* JSON resposta
 
-```
+```json
 {
     "id": 3,
     "email": "dyane.aaraujo@gmail.com",
@@ -83,11 +83,11 @@ CONCLUÍDO - Desafio para criar uma API RESTful de um delivery de restaurante.
 
 ![image](https://user-images.githubusercontent.com/101612046/188738620-7171795c-ebf9-4bc4-9cfc-287082e855c8.png)
 
-#Cliente
+# Cliente
 
-*JSON para criar cliente
+* JSON para criar cliente
 
-```
+```json
 {
     "nome": "Dyane Andrade",
     "telefone": "(11)92003-2417",
@@ -102,9 +102,9 @@ CONCLUÍDO - Desafio para criar uma API RESTful de um delivery de restaurante.
 }
 ```
 
-*JSON resposta
+* JSON resposta
 
-```
+```json
 {
     "id": 2,
     "nome": "Dyane Andrade",
@@ -127,11 +127,11 @@ CONCLUÍDO - Desafio para criar uma API RESTful de um delivery de restaurante.
 
 ![image](https://user-images.githubusercontent.com/101612046/188739120-ccd2fedd-5ef0-40d2-a502-bc9b0ecd21d1.png)
 
-#Pedido
+# Pedido
 
-*JSON para criar pedido
+* JSON para criar pedido
 
-```
+```json
 {
 "itensPedido":[
         {
@@ -155,9 +155,9 @@ CONCLUÍDO - Desafio para criar uma API RESTful de um delivery de restaurante.
 }
 ```
 
-*JSON resposta
+* JSON resposta
 
-```
+```json
 {
     "id": 1,
     "cliente": {
@@ -205,11 +205,11 @@ CONCLUÍDO - Desafio para criar uma API RESTful de um delivery de restaurante.
 ```
 ![image](https://user-images.githubusercontent.com/101612046/188739576-ee8ac3a1-885b-4358-9461-ff158c1593b0.png)
 
-#Entrega
+# Entrega
 
-*JSON para criar entrega
+* JSON para criar entrega
 
-```
+```json
 {
     "motoboy":"Leandro",
     "valor":10.0,
@@ -219,9 +219,9 @@ CONCLUÍDO - Desafio para criar uma API RESTful de um delivery de restaurante.
 }
 ```
 
-*JSON resposta
+* JSON resposta
 
-```
+```json
 {
     "id": 1,
     "data": "2022-09-06T18:19:00.1792196",
