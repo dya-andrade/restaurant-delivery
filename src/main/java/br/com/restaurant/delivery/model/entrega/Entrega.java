@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -33,7 +34,7 @@ public class Entrega implements Serializable {
 	
 	private BigDecimal valor;
 	
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER)
     private List<Pedido> pedidos = new ArrayList<Pedido>();
         
     public void adicionaPedidos(List<Pedido> pedidos) {

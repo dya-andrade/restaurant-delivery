@@ -13,6 +13,6 @@ public class AplicaDescontoNoPedido implements CriaPedido {
 	@Override
 	public void cria(Pedido pedido, CadastraPedidoVO vo) {
 		pedido.setDesconto(vo.getDesconto());
-		pedido.setValorTotal(new BigDecimal("0").subtract(vo.getDesconto()));
+		pedido.setValorTotal(new BigDecimal("0").multiply((vo.getDesconto()).subtract(null)));
 	}
 }

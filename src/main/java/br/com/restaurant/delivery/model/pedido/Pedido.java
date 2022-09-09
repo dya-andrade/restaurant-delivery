@@ -29,7 +29,7 @@ public class Pedido implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_cliente", nullable = false)
 	private Cliente cliente;
 
@@ -41,7 +41,8 @@ public class Pedido implements Serializable {
 	private BigDecimal valorTotal = new BigDecimal("0");
 
 	private BigDecimal desconto = new BigDecimal("0");
-
+	
+	
 	public void calculaValorTotal() {
 		itensPedido.forEach(i -> 
 		this.valorTotal = new BigDecimal(this.valorTotal.toString()).add(i.getValorTotal()));
@@ -95,5 +96,4 @@ public class Pedido implements Serializable {
 	public void setDesconto(BigDecimal desconto) {
 		this.desconto = desconto;
 	}
-
 }

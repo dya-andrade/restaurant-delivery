@@ -40,7 +40,7 @@ public class Cliente implements Serializable {
 
 	@Enumerated(EnumType.STRING)
 	private FormaPagamento formaPagamento;
-	
+
 	public void atualizaCliente(@Valid ClienteVO vo) {
 		this.nome = vo.getNome();
 		this.telefone = vo.getTelefone();
