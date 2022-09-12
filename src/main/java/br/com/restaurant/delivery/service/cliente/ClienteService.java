@@ -11,11 +11,9 @@ import org.springframework.transaction.annotation.Transactional;
 import br.com.restaurant.delivery.data.vo.v1.cliente.ClienteVO;
 import br.com.restaurant.delivery.mapper.DozerMapper;
 import br.com.restaurant.delivery.model.cliente.Cliente;
-import br.com.restaurant.delivery.model.pedido.Pedido;
 import br.com.restaurant.delivery.repository.ClienteRepository;
-import br.com.restaurant.delivery.repository.EntregaRepository;
-import br.com.restaurant.delivery.repository.PedidoRepository;
 import br.com.restaurant.delivery.service.cliente.acao.AdicionaLinkCliente;
+import br.com.restaurant.delivery.service.cliente.acao.DeletaRelacionamentosCliente;
 import br.com.restaurant.delivery.service.cliente.validacao.ValidacaoClienteDuplicado;
 import br.com.restaurant.delivery.service.cliente.validacao.ValidacaoLocalizaCliente;
 
@@ -27,16 +25,13 @@ public class ClienteService {
 	private ClienteRepository repository;
 	
 	@Autowired
-	private PedidoRepository pedidoRepository;
-	
-	@Autowired
-	private EntregaRepository entregaRepository;
-	
-	@Autowired
 	private ValidacaoClienteDuplicado clienteDuplicado;
 
 	@Autowired
 	private ValidacaoLocalizaCliente localizaCliente;
+	
+	@Autowired
+	private DeletaRelacionamentosCliente deletaRelacionamentosCliente;
 
 	@Autowired
 	private AdicionaLinkCliente adicionaLink;
@@ -83,13 +78,7 @@ public class ClienteService {
 		
 		Cliente cliente = localizaCliente.valida(id);
 		
-		List<Pedido> pedidos = pedidoRepository.findByCliente(cliente);
-		
-		//List<Long> idPedidos = pedidos.stream().map(p -> p.getId()).collect(Collectors.toList());
-		
-		pedidos.forEach(p -> entregaRepository.deletaPedidoEntrega(p.getId()));
-		
-		pedidoRepository.deleteAll(pedidos);
+		deletaRelacionamentosCliente.deleta(cliente);
 				
 		repository.delete(cliente);
 	}
