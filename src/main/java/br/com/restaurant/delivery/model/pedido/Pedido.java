@@ -49,6 +49,12 @@ public class Pedido implements Serializable {
 		this.data = LocalDateTime.now();
 	}
 
+	public void aplicaDesconto(BigDecimal desconto) {
+		this.desconto = desconto;
+		this.valorTotal = new BigDecimal(
+				this.valorTotal.toString()).subtract(this.desconto);
+	}
+	
 	public Long getId() {
 		return id;
 	}
